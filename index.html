@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LidarMap Support</title>
+<style>
+:root { --bg:#f3f7fc; --card:#ffffff; --text:#1d1d1f; --muted:#6e6e73; --accent:#0b63ce; --line:#d5e0ee; }
+@media (prefers-color-scheme: dark) { :root { --bg:#070b14; --card:#101828; --text:#f5f5f7; --muted:#a1a1a6; --accent:#5aa9ff; --line:#22304a; } }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+main { max-width:720px; margin:0 auto; padding:24px 16px 48px; }
+nav { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+nav button { border:1px solid var(--line); background:var(--card); color:var(--text); border-radius:999px; padding:6px 12px; font:inherit; font-size:14px; cursor:pointer; }
+nav button[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#fff; }
+section { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:24px; }
+h1 { font-size:26px; line-height:1.25; margin:0 0 4px; }
+h2 { font-size:17px; margin:24px 0 4px; color:var(--accent); }
+p { margin:0; }
+.updated { color:var(--muted); font-size:14px; }
+.logo { font-size:40px; }
+a { color:var(--accent); overflow-wrap:anywhere; }
+</style>
+</head>
+<body>
+<main>
+<nav aria-label="Language">
+<button type="button" data-lang="hu">Magyar</button>
+<button type="button" data-lang="en">English</button>
+</nav>
+<section lang="hu" data-lang="hu" hidden>
+<h1>LidarMap – Támogatás</h1>
+<p class="updated">Segítség a LidarMap használatához</p>
+<h2>Melyik készülékkel működik?</h2>
+<p>LiDAR-os iPhone Pro (12 Pro vagy újabb Pro modell) vagy 2020-as vagy újabb iPad Pro, iOS 17-tel vagy újabbal.</p>
+<h2>Nem sikerül a szkennelés</h2>
+<p>Kapcsolj több fényt, mozogj lassan, és kerüld a tükröződő vagy átlátszó felületeket.</p>
+<h2>Hol vannak a scanjeim?</h2>
+<p>A kezdőlapon, a Mentett scanek között. Onnan megoszthatók és átnevezhetők.</p>
+<h2>LidarMap Pro</h2>
+<p>Új telefonon a LidarMap Pro képernyő „Vásárlások visszaállítása” gombjával kapod vissza a vásárlásodat. Aki a korábbi fizetős kiadást vette meg, annak minden Pro funkció jár. Előfizetést az Apple-fiókod előfizetéseinél mondhatsz le.</p>
+<h2>Kapcsolat</h2>
+<p><a href="mailto:daeniels83@gmail.com">daeniels83@gmail.com</a></p>
+<p><a href="privacy/">Adatvédelem</a></p>
+</section>
+<section lang="en" data-lang="en">
+<h1>LidarMap – Support</h1>
+<p class="updated">Help with using LidarMap</p>
+<h2>Which devices are supported?</h2>
+<p>iPhone Pro with LiDAR (12 Pro or later Pro model) or iPad Pro from 2020 or later, with iOS 17 or later.</p>
+<h2>Scanning does not work well</h2>
+<p>Add more light, move slowly and avoid reflective or transparent surfaces.</p>
+<h2>Where are my scans?</h2>
+<p>On the home screen under Saved Scans. You can share and rename them there.</p>
+<h2>LidarMap Pro</h2>
+<p>On a new device, use Restore purchases on the LidarMap Pro screen. If you bought the earlier paid version, all Pro features are included. You can cancel a subscription in your Apple Account subscriptions.</p>
+<h2>Contact</h2>
+<p><a href="mailto:daeniels83@gmail.com">daeniels83@gmail.com</a></p>
+<p><a href="privacy/">Privacy Policy</a></p>
+</section>
+</main>
+<script>
+const langs = ['hu','en'];
+function show(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('section').forEach(s => s.hidden = s.dataset.lang !== lang);
+  document.querySelectorAll('nav button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
+}
+document.querySelectorAll('nav button').forEach(b => b.addEventListener('click', () => show(b.dataset.lang)));
+show(langs.find(l => (navigator.language || '').toLowerCase().startsWith(l)) || 'en');
+</script>
+</body>
+</html>
